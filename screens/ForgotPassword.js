@@ -1,0 +1,47 @@
+import React, { useState } from 'react';
+import { View, Text, TextInput, TouchableOpacity, SafeAreaView } from 'react-native';
+import { styles } from '../styles/global';
+import { useFonts } from 'expo-font';
+import FontAwesome from '@expo/vector-icons/FontAwesome';
+import { useRouter } from 'expo-router';
+
+export default function ForgotPassword() {
+    const [clicked, setClicked] = useState(false);
+        const router = useRouter();
+        function reset() {
+            setClicked(true);
+            router.push("/resetpassword");
+        }
+
+    const [fontsLoaded] = useFonts({
+        'Roboto-Bold': require('../assets/Fonts/Roboto-Bold.ttf'),
+        'Roboto-Regular': require('../assets/Fonts/Roboto-Regular.ttf')
+    });
+    if (!fontsLoaded) {
+        return null
+    }
+    {
+        return (
+            <SafeAreaView style={styles.container}>
+                <Text style={styles.headerText}>Forgot</Text>
+                <Text style={styles.headerText}>Password?</Text>
+
+                <Text style={styles.subHeaderText}>Enter your email to receive a password code. </Text>
+                <Text style={styles.label}>Email Address</Text>
+
+                <TextInput placeholder='Enter Email Address' style={styles.input}></TextInput>
+
+
+
+
+                <TouchableOpacity style={styles.signInButton} onPress={(reset)}><Text style={styles.signInText}>Submit </Text></TouchableOpacity>
+
+
+
+
+            </SafeAreaView>
+
+
+        )
+    }
+};
