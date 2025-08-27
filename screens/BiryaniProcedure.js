@@ -51,7 +51,7 @@ const [clicked, setClicked] = useState(false);
                 {/* {header image with icons} */}
                 <View style={styles.videoWidgetContainer}>
 
-                    <Video source={require('../assets/videos/biryani.mp4')} rate={1.0} volume={1.0} isMuted={false}
+                    <Video source={require('../assets/videos/biryani.mp4')} rate={1.0} volume={1.0} isMuted={true}
                     resizeMode='cover' isLooping useNativeControls shouldPlay
                          style={{
                               width: '100%', 
