@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, SafeAreaView } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { View, Text, TextInput, TouchableOpacity,} from 'react-native';
 import { styles } from '../styles/global';
 import { useFonts } from 'expo-font';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { useRouter } from 'expo-router';
+import { useState } from 'react';
 
-export default function ForgotPassword() {
+const ForgotPassword = () => {
     const [clicked, setClicked] = useState(false);
         const router = useRouter();
         function reset() {
@@ -45,3 +46,5 @@ export default function ForgotPassword() {
         )
     }
 };
+
+export default ForgotPassword;

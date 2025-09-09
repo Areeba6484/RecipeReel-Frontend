@@ -34,7 +34,6 @@ export const localStyles = StyleSheet.create({
         width: 50,
         height: 50,
         borderWidth: 1,
-        // borderColor:COLORS.secondary,
         borderRadius: 10,
         textAlign: 'center',
         fontSize: 18,
@@ -43,9 +42,10 @@ export const localStyles = StyleSheet.create({
     },
     checkboxContainer: {
         flexDirection: 'row',
-        alignItems: 'flex-start',
-        marginBottom: 25,
-
+        alignItems: 'center',       
+        justifyContent: 'flex-start', 
+        width: '100%',              
+        marginVertical: 10,
     },
     checkboxText: {
         marginLeft: 10,
@@ -56,9 +56,6 @@ export const localStyles = StyleSheet.create({
         flex: 1,
         backgroundColor: COLORS.background,
         marginTop: 30,
-        // paddingBottom:100,
-
-
     },
     headerRow: {
         flexDirection: 'row',

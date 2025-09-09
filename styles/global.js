@@ -18,19 +18,18 @@ export const styles = StyleSheet.create({
 
   },
   container: {
-
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 50,
     backgroundColor: COLORS.background,
-    margin: 20,
+    padding: 20,
 
   },
   headerText: {
     fontSize: 28,
     fontFamily: 'Roboto-Bold',
     color: COLORS.text,
-    alignSelf:'flex-start'
+    alignSelf: 'flex-start'
   },
   subHeaderText: {
     fontSize: 18,
@@ -55,10 +54,15 @@ export const styles = StyleSheet.create({
     fontSize: 14,
     width: '100%',
   },
+  forgotWrap: {
+    alignSelf: 'flex-start', // overrides parent alignItems:'center'
+    width: '100%',           // spans the form width
+  },
   forgottext: {
     color: COLORS.text,
     marginBottom: 25,
-    alignSelf: 'flex-start',
+    marginVertical: 10,
+    textAlign: 'left',       // makes the text itself left-aligned
   },
   signInButton: {
     backgroundColor: COLORS.primary,
@@ -115,8 +119,6 @@ export const styles = StyleSheet.create({
   image: {
     width: '100%',
     height: 220,
-    // borderBottomLeftRadius:15,
-    // borderBottomRightRadius:15,
     borderRadius: 15,
     resizeMode: 'stretch'
   },
@@ -198,7 +200,7 @@ export const styles = StyleSheet.create({
   chefBox: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: '15',
+    marginBottom: 15,
   },
   chefName: {
     fontFamily: 'Roboto-Bold',
@@ -345,7 +347,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingVertical: 10,
     marginRight: 10,
-    minHeight:50,
+    minHeight: 50,
 
   },
   sendButton: {

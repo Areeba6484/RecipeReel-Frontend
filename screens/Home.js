@@ -1,5 +1,5 @@
-import React from 'react';
-import { SafeAreaView, Text, TextInput, TouchableOpacity, View, Image, ScrollView, Pressable } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { Text, TextInput, TouchableOpacity, View, Image, ScrollView, Pressable } from 'react-native';
 import { styles } from '../styles/global';
 import { useFonts } from 'expo-font';
 import { Ionicons, FontAwesome, Feather } from '@expo/vector-icons';
@@ -12,12 +12,9 @@ import jamesImg from '../assets/images/james.jpg';
 import lauraImg from '../assets/images/laura.jpg';
 import { useRouter } from 'expo-router';
 
-
-
-
-export default function Home() {
-
+const Home = () => {
   const router = useRouter();
+
   function Recipe1() {
     router.push("/biryaniscreen");
   }
@@ -33,9 +30,9 @@ export default function Home() {
   function Profile() {
     router.push("/profile");
   }
+
   const greekSalad = require('../assets/images/salad.jpg');
   const Crunchy = require('../assets/images/coleslaw.jpg');
-
 
   const [fontsLoaded] = useFonts({
     'Roboto-Bold': require('../assets/Fonts/Roboto-Bold.ttf'),
@@ -44,6 +41,7 @@ export default function Home() {
   if (!fontsLoaded) {
     return null;
   }
+
   return (
     <SafeAreaView style={localStyles.safeArea}>
       <ScrollView style={{ padding: 20 }}>
@@ -55,16 +53,22 @@ export default function Home() {
           <Image source={require('../assets/images/avatar.jpg')} style={localStyles.avatar} />
         </View>
 
-        {/* {Search Box} */}
+        {/* Search Box */}
         <View style={localStyles.searchContainer}>
           <View style={localStyles.searchBox}>
             <Ionicons name="search" size={20} style={localStyles.searchIcon} />
-            <TextInput placeholder='Search recipe' style={localStyles.inputBox} placeholderTextColor={'#333'}></TextInput></View>
-          <TouchableOpacity style={localStyles.filterButton} onPress={(Filter)}>
+            <TextInput
+              placeholder='Search recipe'
+              style={localStyles.inputBox}
+              placeholderTextColor={'#333'}
+            />
+          </View>
+          <TouchableOpacity style={localStyles.filterButton} onPress={Filter}>
             <Ionicons name="options-outline" size={20} />
-          </TouchableOpacity></View>
+          </TouchableOpacity>
+        </View>
 
-        {/* {categories} */}
+        {/* Categories */}
         <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ marginTop: 20 }}>
           <View style={localStyles.categoryContainer}>
             {['All', 'Pakistani', 'Indian', 'Chinese', 'Asian', 'American', 'French', 'Turkish'].map((cat, index) => (
@@ -77,20 +81,16 @@ export default function Home() {
           </View>
         </ScrollView>
 
-
-        {/* {Popular recipies} */}
+        {/* Popular Recipes */}
         <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ marginTop: 20 }}>
           {[
-
             {
               title: 'Chicken Biryani',
               time: '40 Mins',
               rating: '4.9',
               image: chickenBiryani,
               description: 'Aromatic rice with juicy spiced chicken.'
-
             },
-
             {
               title: 'Crunchy Nut Coleslaw',
               time: '10 Mins',
@@ -104,7 +104,6 @@ export default function Home() {
               rating: '4.7',
               image: butterChicken,
               description: 'Silky curry with tender chicken bites.'
-
             },
             {
               title: 'Classic Greek Salad',
@@ -112,20 +111,16 @@ export default function Home() {
               rating: '4.5',
               image: greekSalad,
               description: 'A fresh mix of veggies & feta.'
-
             },
-
           ].map((item, idx) => (
             <TouchableOpacity key={idx} onPress={Recipe1}>
               <View style={localStyles.card}>
                 <View style={localStyles.wrapper}>
-                  <Image source={item.image} style={localStyles.cardImage} /></View>
+                  <Image source={item.image} style={localStyles.cardImage} />
+                </View>
                 <View style={localStyles.ratingBadge}>
                   <Ionicons name='star' size={12} color="#FFD700" />
                   <Text style={localStyles.starText}>{item.rating}</Text>
-
-
-
                 </View>
                 <Text style={localStyles.cardTitle}>{item.title}</Text>
                 <Text style={localStyles.cardDescription}>{item.description}</Text>
@@ -137,8 +132,7 @@ export default function Home() {
           ))}
         </ScrollView>
 
-        {/* {new recipies}     */}
-
+        {/* New Recipes */}
         <Text style={[localStyles.new, { marginTop: 20, fontWeight: 'bold' }]}>New Recipes</Text>
         <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ marginTop: 10 }}>
           <View style={localStyles.newRecipeCard}>
@@ -150,13 +144,10 @@ export default function Home() {
                 <FontAwesome name='star' size={14} style={{ marginLeft: 10, color: "#FFD700" }} />
                 <FontAwesome name='star' size={14} style={{ marginLeft: 10, color: "#FFD700" }} />
                 <FontAwesome name='star' size={14} style={{ marginLeft: 10 }} />
-
               </View>
               <View style={[localStyles.row, { marginTop: 5 }]}>
                 <Image source={jamesImg} style={localStyles.avatar} />
                 <Text style={localStyles.chefText}>By James Milner.</Text>
-
-                {/* <Text style={localStyles.timeText}>4.5</Text> */}
                 <Ionicons name='time-outline' size={14} style={{ marginLeft: 10 }} />
                 <Text style={localStyles.timeText}>20 mins</Text>
               </View>
@@ -173,21 +164,16 @@ export default function Home() {
                 <FontAwesome name='star' size={14} style={{ marginLeft: 10, color: "#FFD700" }} />
                 <FontAwesome name='star' size={14} style={{ marginLeft: 10 }} />
                 <FontAwesome name='star' size={14} style={{ marginLeft: 10 }} />
-
-
               </View>
               <View style={[localStyles.row, { marginTop: 5 }]}>
                 <Image source={require('../assets/images/sarah.jpg')} style={localStyles.avatar} />
                 <Text style={localStyles.chefText}>By Sarah Khan.</Text>
-
-                {/* <Text style={localStyles.timeText}>4.5</Text> */}
                 <Ionicons name='time-outline' size={14} style={{ marginLeft: 10 }} />
                 <Text style={localStyles.timeText}>18 mins</Text>
               </View>
             </View>
             <Image source={require('../assets/images/wrap.jpg')} style={localStyles.newRecipePhoto} />
           </View>
-
 
           <View style={localStyles.newRecipeCard}>
             <View style={localStyles.newRecipeInfo}>
@@ -198,14 +184,10 @@ export default function Home() {
                 <FontAwesome name='star' size={14} style={{ marginLeft: 10, color: "#FFD700" }} />
                 <FontAwesome name='star' size={14} style={{ marginLeft: 10 }} />
                 <FontAwesome name='star' size={14} style={{ marginLeft: 10 }} />
-
-
               </View>
               <View style={[localStyles.row, { marginTop: 5 }]}>
                 <Image source={lauraImg} style={localStyles.avatar} />
                 <Text style={localStyles.chefText}>By laura.</Text>
-
-                {/* <Text style={localStyles.timeText}>3.5</Text> */}
                 <Ionicons name='time-outline' size={14} style={{ marginLeft: 10 }} />
                 <Text style={localStyles.timeText}>25 mins</Text>
               </View>
@@ -213,25 +195,19 @@ export default function Home() {
             <Image source={pastaImage} style={localStyles.newRecipePhoto} />
           </View>
         </ScrollView>
-
-
-
-
-
       </ScrollView>
 
       <View style={localStyles.iconContainer}>
-        <TouchableOpacity onPress={(Home)}><Ionicons name='home-outline' size={24} /></TouchableOpacity>
-
-        <TouchableOpacity onPress={(Saved)} ><Ionicons name='bookmark-outline' size={24} /></TouchableOpacity>
-
+        <TouchableOpacity onPress={Home}><Ionicons name='home-outline' size={24} /></TouchableOpacity>
+        <TouchableOpacity onPress={Saved}><Ionicons name='bookmark-outline' size={24} /></TouchableOpacity>
         <View style={localStyles.addButton}>
           <TouchableOpacity><FontAwesome name='plus' style={localStyles.plusText} /></TouchableOpacity>
         </View>
-        <TouchableOpacity ><Ionicons name='notifications-outline' size={24} /></TouchableOpacity>
-        <TouchableOpacity onPress={(Profile)}><Ionicons name='person-outline' size={24} /></TouchableOpacity>
+        <TouchableOpacity><Ionicons name='notifications-outline' size={24} /></TouchableOpacity>
+        <TouchableOpacity onPress={Profile}><Ionicons name='person-outline' size={24} /></TouchableOpacity>
       </View>
-
     </SafeAreaView>
   );
 }
+
+export default Home;

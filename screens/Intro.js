@@ -1,13 +1,13 @@
-import React from 'react';
-import { SafeAreaView, Text, TouchableOpacity, View, ImageBackground } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { Text, TouchableOpacity, View, ImageBackground } from 'react-native';
 import { styles } from '../styles/global';
 import { localStyles } from '../styles/local';
 import { useFonts } from 'expo-font';
-import { Ionicons, FontAwesome5, MaterialCommunityIcons } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
 
-export default function IntroScreen() {
+const Intro = () => {
     const [clicked, setClicked] = useState(false);
     const router = useRouter();
     function Signin() {
@@ -24,12 +24,13 @@ export default function IntroScreen() {
         return null
     }
     return (
-        <SafeAreaView>
-            <ImageBackground source={require('../assets/images/bg.jpg')} resizeMode='cover' style={localStyles.backgroundImage}>
+        <SafeAreaView >
+
+            <ImageBackground source={require('../assets/images/bg.png')} resizeMode='cover' style={localStyles.backgroundImage}>
                 <View style={localStyles.contentBox}>
                     {/* chef Icon */}
                     <View style={localStyles.iconIntro}>
-                        <MaterialCommunityIcons name="chef-hat" size={50} color={'#fff'} />
+                        <MaterialCommunityIcons name="chef-hat" size={50} color={'#E0115F'} />
                     </View>
                     <Text style={localStyles.subTitle}>100K+  Premium Recipes</Text>
                     <Text style={localStyles.title}>Recipe{"\n"}Reel</Text>
@@ -42,3 +43,5 @@ export default function IntroScreen() {
         </SafeAreaView>
     );
 };
+
+export default Intro;
