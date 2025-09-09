@@ -1,77 +1,69 @@
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Text, TextInput, View, ScrollView } from 'react-native';
+import { Text, View, ScrollView } from 'react-native';
 import { styles } from '../styles/global';
 import { useFonts } from 'expo-font';
-import { Ionicons } from '@expo/vector-icons'; 
 import { localStyles } from '../styles/local';
+import SearchBar from '../components/SearchBar';
 import RecipeItem from '../components/RecipeItem ';
+import { useRouter } from 'expo-router';
+import { Ionicons } from '@expo/vector-icons';
 
 const SearchResults = () => {
+  const router = useRouter();
+
   const [fontsLoaded] = useFonts({
     'Roboto-Bold': require('../assets/Fonts/Roboto-Bold.ttf'),
-    'Roboto-Regular': require('../assets/Fonts/Roboto-Regular.ttf')
+    'Roboto-Regular': require('../assets/Fonts/Roboto-Regular.ttf'),
   });
 
-  if (!fontsLoaded) {
-    return null;
-  }
+  if (!fontsLoaded) return null;
 
   return (
     <SafeAreaView style={localStyles.safeArea}>
       <ScrollView style={{ padding: 20 }}>
+        {/* Header */}
         <View style={localStyles.headerRow}>
-          <View>
-            <Text style={[styles.headerText, { fontSize: 20 }]}>Search Recipes</Text>
-          </View>
+          <Text style={[styles.headerText, { fontSize: 20 }]}>Search Recipes</Text>
         </View>
 
         {/* Search Box */}
-        <View style={localStyles.searchContainer}>
-          <View style={localStyles.searchBox}>
-            <Ionicons name="search" size={20} style={localStyles.searchIcon} />
-            <TextInput
-              placeholder="Search recipe"
-              style={localStyles.inputBox}
-              placeholderTextColor="#333"
-            />
-          </View>
-        </View>
+        <SearchBar
+          placeholder="Search recipe"
+          onFilterPress={() => console.log("Search pressed")}
+        />
 
         {/* Search Results */}
-        <Text style={localStyles.recentText}>Search Results</Text>
-        <Text style={{ textAlign: 'right', marginBottom: 10 }}>15 results</Text>
+        <View style={localStyles.resultsRow}>
+          <Text style={localStyles.recentText}>Search Results</Text>
+          <Text >15 results</Text>
+        </View>
 
-        {/* Items */}
+        {/* Recipe Items */}
         <RecipeItem
           imageSource={require('../assets/images/chops.jpg')}
           title="Lamb chops with mint"
           chef="By Chef Laura . 30 mins"
         />
-
         <RecipeItem
           imageSource={require('../assets/images/chickenBiryani.jpg')}
           title="Chicken Biryani"
           chef="By James Milner . 40 mins"
         />
-
         <RecipeItem
           imageSource={require('../assets/images/rice.jpg')}
           title="Spice roasted chicken with flavored rice"
           chef="By Mark Kelvin . 20 mins"
         />
-
         <RecipeItem
           imageSource={require('../assets/images/egg-rice.jpg')}
           title="Egg fried rice with pork"
           chef="By Chef Laura . 15 mins"
         />
-
         <RecipeItem
           imageSource={require('../assets/images/chickenBiryani.jpg')}
           title="Chicken Biryani"
           chef="By James Milner . 40 mins"
         />
-
         <RecipeItem
           imageSource={require('../assets/images/rice.jpg')}
           title="Spice roasted chicken with flavored rice"

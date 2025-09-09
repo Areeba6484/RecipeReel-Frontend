@@ -1,24 +1,28 @@
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { View, Text, TextInput, TouchableOpacity } from 'react-native';
-import { styles } from '../styles/global';
-import { useFonts } from 'expo-font';
-import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { localStyles } from '../styles/local';
-import { useRouter } from 'expo-router';
-import { useState } from 'react';
+import { SafeAreaView } from "react-native-safe-area-context";
+import { View, Text, TouchableOpacity } from "react-native";
+import { styles } from "../styles/global";
+import { useFonts } from "expo-font";
+import { localStyles } from "../styles/local";
+import { useRouter } from "expo-router";
+import { useState } from "react";
+
+// Components
+import CustomInput from "../components/CustomInput";
+import CheckBox from "../components/CheckBox";
+import Divider from "../components/Divider";
+import SocialIconsRow from "../components/SocialIconsRow";
 
 const Signup = () => {
   const router = useRouter();
+  const [isChecked, setIsChecked] = useState(false);
 
   function OTPScreen() {
     router.push("/otp");
   }
 
-  const [isChecked, setisChecked] = useState(false);
-
   const [fontsLoaded] = useFonts({
-    'Roboto-Bold': require('../assets/Fonts/Roboto-Bold.ttf'),
-    'Roboto-Regular': require('../assets/Fonts/Roboto-Regular.ttf')
+    "Roboto-Bold": require("../assets/Fonts/Roboto-Bold.ttf"),
+    "Roboto-Regular": require("../assets/Fonts/Roboto-Regular.ttf"),
   });
 
   if (!fontsLoaded) {
@@ -32,42 +36,23 @@ const Signup = () => {
         Let's help you set up your account, it would not take long
       </Text>
 
-      <Text style={styles.label}>Name</Text>
-      <TextInput placeholder="Enter Name" style={styles.input} />
+      <CustomInput label="Name" placeholder="Enter Name" />
+      <CustomInput label="Email" placeholder="Enter Email" />
+      <CustomInput label="Password" placeholder="Enter Password" secureTextEntry />
+      <CustomInput label="Confirm Password" placeholder="Retype Password" secureTextEntry />
 
-      <Text style={styles.label}>Email</Text>
-      <TextInput placeholder="Enter Email" style={styles.input} />
-
-      <Text style={styles.label}>Password</Text>
-      <TextInput placeholder="Enter Password" style={styles.input} secureTextEntry />
-
-      <Text style={styles.label}>Confirm Password</Text>
-      <TextInput placeholder="Retype Password" style={styles.input} secureTextEntry />
-
-      <View style={localStyles.checkboxContainer}>
-        <TouchableOpacity onPress={() => setisChecked(!isChecked)}>
-          <FontAwesome
-            name={isChecked ? 'check-square' : 'square-o'}
-            size={24}
-          />
-        </TouchableOpacity>
-        <Text style={localStyles.checkboxText}>Accept terms & Conditions</Text>
-      </View>
+      <CheckBox
+        checked={isChecked}
+        onToggle={() => setIsChecked(!isChecked)}
+        label="Accept terms & Conditions"
+      />
 
       <TouchableOpacity style={styles.signInButton} onPress={OTPScreen}>
         <Text style={styles.signInText}>Sign Up</Text>
       </TouchableOpacity>
 
-      <View style={styles.dividerContainer}>
-        <View style={styles.line} />
-        <Text style={styles.orText}>Or Sign In With</Text>
-        <View style={styles.line} />
-      </View>
-
-      <View style={styles.iconContainer}>
-        <TouchableOpacity><FontAwesome name="google" size={40} /></TouchableOpacity>
-        <TouchableOpacity><FontAwesome name="facebook-square" size={40} /></TouchableOpacity>
-      </View>
+      <Divider text="Or Sign In With" />
+      <SocialIconsRow />
 
       <Text style={styles.signUpText}>
         {"Already a member? "}

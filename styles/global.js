@@ -354,7 +354,7 @@ export const styles = StyleSheet.create({
     backgroundColor: COLORS.primary,
     paddingVertical: 8,
     paddingHorizontal: 14,
-    borderRadius: 8
+    borderRadius: 8,
   },
 
 

@@ -5,120 +5,109 @@ import { useFonts } from 'expo-font';
 import { Ionicons, FontAwesome, Entypo } from '@expo/vector-icons';
 import { localStyles } from '../styles/local';
 import RecipeCard from '../components/RecipeCard';
+import ProfileTabs from '../components/ProfileTabs';
 import { useRouter } from 'expo-router';
+import { useState } from 'react';
 
 const Profile = () => {
   const router = useRouter();
-  function Review() {
-    router.push("/review");
-  }
-  function Home() {
-    router.push("/home");
-  }
-  function Saved() {
-    router.push("/savedrecipes");
-  }
-  function ProfileNav() {
-    router.push("/profile");
-  }
+  const [activeTab, setActiveTab] = useState('recipe');
+
+  const tabs = [
+    { key: 'recipe', label: 'Recipe' },
+    { key: 'videos', label: 'Videos' },
+    { key: 'reviews', label: 'Reviews' },
+  ];
 
   const [fontsLoaded] = useFonts({
     'Roboto-Bold': require('../assets/Fonts/Roboto-Bold.ttf'),
     'Roboto-Regular': require('../assets/Fonts/Roboto-Regular.ttf')
   });
-  if (!fontsLoaded) {
-    return null;
-  }
+  if (!fontsLoaded) return null;
+
+  const navigateTab = (key) => {
+    setActiveTab(key);
+    if (key === 'reviews') router.push('/review');
+  };
 
   return (
     <SafeAreaView style={localStyles.safeArea}>
-      <ScrollView style={{ padding: 20 }}>
+      <ScrollView style={{ padding: 20 }} showsVerticalScrollIndicator={false}>
+        {/* Header */}
         <View style={localStyles.headerRow}>
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>
             <TouchableOpacity>
-              <Entypo
-                name="dots-three-horizontal"
-                size={24}
-                style={{ marginRight: 100 }}
-              />
+              <Entypo name="dots-three-horizontal" size={24} style={{ marginRight: 100 }} />
             </TouchableOpacity>
             <Text style={[styles.headerText, { fontSize: 20 }]}>Profile</Text>
           </View>
         </View>
 
-        <ScrollView showsVerticalScrollIndicator={false}>
-          {/* profile info */}
-          <View style={styles.profileContainer}>
-            <Image
-              source={require('../assets/images/avatar.jpg')}
-              style={{ width: 90, height: 90, borderRadius: 45, marginBottom: 10 }}
-            />
-            <View style={{ flex: 1, marginLeft: 12 }}>
-              <Text style={styles.title}>Jhon Doe</Text>
-              <Text>Chef</Text>
-              <Text style={{ color: '#444', marginTop: 4 }}>
-                Private Chef{'\n'}Passionate about food and life.
-              </Text>
-            </View>
-          </View>
-
-          <View style={styles.statBox}>
-            <Text>
-              Recipe{"\n"}
-              <Text style={{ fontSize: 16, fontWeight: 'bold' }}>4</Text>
-            </Text>
-            <Text>
-              Followers{"\n"}
-              <Text style={{ fontSize: 16, fontWeight: 'bold' }}>2.5M</Text>
-            </Text>
-            <Text>
-              Following{"\n"}
-              <Text style={{ fontSize: 16, fontWeight: 'bold' }}>259</Text>
+        {/* Profile Info */}
+        <View style={styles.profileContainer}>
+          <Image
+            source={require('../assets/images/avatar.jpg')}
+            style={{ width: 90, height: 90, borderRadius: 45, marginBottom: 10 }}
+          />
+          <View style={{ flex: 1, marginLeft: 12 }}>
+            <Text style={styles.title}>Jhon Doe</Text>
+            <Text>Chef</Text>
+            <Text style={{ color: '#444', marginTop: 4 }}>
+              Private Chef{'\n'}Passionate about food and life.
             </Text>
           </View>
-        </ScrollView>
-
-        {/* tabs */}
-        <View style={styles.tabBox}>
-          <TouchableOpacity style={styles.activeTab}>
-            <Text style={styles.activeTabText}>Recipe</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.inactiveTab}>
-            <Text style={styles.inactiveTabText}>Videos</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.inactiveTab} onPress={Review}>
-            <Text style={styles.inactiveTabText}>Reviews</Text>
-          </TouchableOpacity>
         </View>
 
-        <View style={{ flex: 1 }}>
-          <ScrollView showsVerticalScrollIndicator={false}>
-            <RecipeCard
-              image={require('../assets/images/ribs.jpg')}
-              title="Traditional Spare Ribs"
-              chef="Chef John"
-              time="25 mins"
-              rating="4.0"
-            />
-            <RecipeCard
-              image={require('../assets/images/chops.jpg')}
-              title="Lamb Chops with mint"
-              chef="Chef Laura"
-              time="30 mins"
-              rating="4.5"
-            />
-            <RecipeCard
-              image={require('../assets/images/chickenBiryani.jpg')}
-              title="Chicken Biryani"
-              chef="Chef James Milner"
-              time="40 mins"
-              rating="4.9"
-            />
-          </ScrollView>
+        {/* Stats */}
+        <View style={styles.statBox}>
+          <Text>
+            Recipe{"\n"}
+            <Text style={{ fontSize: 16, fontWeight: 'bold' }}>4</Text>
+          </Text>
+          <Text>
+            Followers{"\n"}
+            <Text style={{ fontSize: 16, fontWeight: 'bold' }}>2.5M</Text>
+          </Text>
+          <Text>
+            Following{"\n"}
+            <Text style={{ fontSize: 16, fontWeight: 'bold' }}>259</Text>
+          </Text>
         </View>
+
+        {/* Tabs */}
+        <ProfileTabs tabs={tabs} activeTab={activeTab} onTabPress={navigateTab} />
+
+        {/* Recipe Cards */}
+        {activeTab === 'recipe' && (
+          <View style={{ flex: 1 }}>
+            <ScrollView showsVerticalScrollIndicator={false}>
+              <RecipeCard
+                image={require('../assets/images/ribs.jpg')}
+                title="Traditional Spare Ribs"
+                chef="Chef John"
+                time="25 mins"
+                rating="4.0"
+              />
+              <RecipeCard
+                image={require('../assets/images/chops.jpg')}
+                title="Lamb Chops with mint"
+                chef="Chef Laura"
+                time="30 mins"
+                rating="4.5"
+              />
+              <RecipeCard
+                image={require('../assets/images/chickenBiryani.jpg')}
+                title="Chicken Biryani"
+                chef="Chef James Milner"
+                time="40 mins"
+                rating="4.9"
+              />
+            </ScrollView>
+          </View>
+        )}
       </ScrollView>
 
-      {/* bottom nav */}
+      {/* Bottom Nav */}
       <View
         style={{
           position: 'absolute',
@@ -132,10 +121,10 @@ const Profile = () => {
           alignItems: 'center',
         }}
       >
-        <TouchableOpacity onPress={Home}>
+        <TouchableOpacity onPress={() => router.push('/home')}>
           <Ionicons name="home-outline" size={24} />
         </TouchableOpacity>
-        <TouchableOpacity onPress={Saved}>
+        <TouchableOpacity onPress={() => router.push('/savedrecipes')}>
           <Ionicons name="bookmark-outline" size={24} />
         </TouchableOpacity>
         <View style={localStyles.addButton}>
@@ -146,7 +135,7 @@ const Profile = () => {
         <TouchableOpacity>
           <Ionicons name="notifications-outline" size={24} />
         </TouchableOpacity>
-        <TouchableOpacity onPress={ProfileNav}>
+        <TouchableOpacity onPress={() => router.push('/profile')}>
           <Ionicons name="person-outline" size={24} />
         </TouchableOpacity>
       </View>

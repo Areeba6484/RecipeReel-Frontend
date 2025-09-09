@@ -20,7 +20,7 @@ export const localStyles = StyleSheet.create({
 
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 100,
+        // marginTop: 100,
         backgroundColor: COLORS.background,
         margin: 20,
 
@@ -42,9 +42,9 @@ export const localStyles = StyleSheet.create({
     },
     checkboxContainer: {
         flexDirection: 'row',
-        alignItems: 'center',       
-        justifyContent: 'flex-start', 
-        width: '100%',              
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        width: '100%',
         marginVertical: 10,
     },
     checkboxText: {
@@ -367,6 +367,12 @@ export const localStyles = StyleSheet.create({
     },
     filterTagTextActive: {
         color: COLORS.text
+    },
+    resultsRow: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginBottom: 10
     }
 
 

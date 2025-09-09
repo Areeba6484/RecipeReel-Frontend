@@ -67,12 +67,12 @@ const styles = StyleSheet.create({
     comment: {
         fontSize: 14,
         color: '#333',
-        paddingHorizontal: 16,
+        paddingHorizontal: 10,
         marginBottom: 6,
     },
     reactionContainer: {
         flexDirection: 'row',
-        paddingHorizontal: 16,
+        paddingHorizontal: 10,
     },
     reaction: {
         flexDirection: 'row',
