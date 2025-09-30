@@ -353,21 +353,21 @@ export const localStyles = StyleSheet.create({
         paddingVertical: 6,
         paddingHorizontal: 14,
         borderRadius: 20,
-        backgroundColor: COLORS.background,
+        backgroundColor: COLORS.background, // default
         marginRight: 10,
-        marginBottom: 10
+        marginBottom: 10,
     },
     filterTagActive: {
-        backgroundColor: COLORS.background,
-
+        backgroundColor: COLORS.primary// highlight background
     },
     filterTagText: {
         color: COLORS.text,
-        fontWeight: '500'
+        fontWeight: "500",
     },
     filterTagTextActive: {
-        color: COLORS.text
+        color: COLORS.text// contrast text when active
     },
+
     resultsRow: {
         flexDirection: 'row',
         justifyContent: 'space-between',

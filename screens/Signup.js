@@ -7,10 +7,10 @@ import { useRouter } from "expo-router";
 import { useState } from "react";
 
 // Components
-import CustomInput from "../components/CustomInput";
-import CheckBox from "../components/CheckBox";
-import Divider from "../components/Divider";
-import SocialIconsRow from "../components/SocialIconsRow";
+import CustomInput from "../components/CustomInput.js";
+import CheckBox from "../components/CheckBox.js";
+import Divider from "../components/Divider.js";
+import SocialIconsRow from "../components/SocialIconsRow.js";
 
 const Signup = () => {
   const router = useRouter();

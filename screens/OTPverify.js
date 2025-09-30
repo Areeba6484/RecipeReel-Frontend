@@ -5,8 +5,8 @@ import { useFonts } from 'expo-font';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
 
-import OtpInput from '../components/OtpInput';
-import AppButton from '../components/AppButton';
+import OtpInput from '../components/OtpInput.js';
+import AppButton from '../components/AppButton.js';
 
 const OTPverify = () => {
   const [clicked, setClicked] = useState(false);

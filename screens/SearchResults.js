@@ -3,8 +3,8 @@ import { Text, View, ScrollView } from 'react-native';
 import { styles } from '../styles/global';
 import { useFonts } from 'expo-font';
 import { localStyles } from '../styles/local';
-import SearchBar from '../components/SearchBar';
-import RecipeItem from '../components/RecipeItem ';
+import SearchBar from '../components/SearchBar.js';
+import RecipeItem from '../components/RecipeItem .js';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 

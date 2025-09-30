@@ -5,7 +5,7 @@ import { useFonts } from 'expo-font';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
-import AppButton from '../components/AppButton';
+import AppButton from '../components/AppButton.js';
 
 const Intro = () => {
   const [clicked, setClicked] = useState(false);

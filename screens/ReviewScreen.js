@@ -3,7 +3,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useFonts } from 'expo-font';
 import { styles } from '../styles/global';
 import { localStyles } from '../styles/local';
-import ReviewItem from '../components/ReviewItem';
+import ReviewItem from '../components/ReviewItem.js';
 
 const ReviewScreen = () => {
   const [fontsLoaded] = useFonts({

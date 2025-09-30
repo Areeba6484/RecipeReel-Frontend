@@ -1,15 +1,21 @@
-import React from 'react';
-import { SafeAreaView, ScrollView, View, Text } from 'react-native';
+import React, { useState } from 'react';
+import { ScrollView, View, Text, TouchableOpacity } from 'react-native';
 import { styles } from '../styles/global';
 import { localStyles } from '../styles/local';
 import { useFonts } from 'expo-font';
 import { useRouter } from 'expo-router';
-import { Ionicons, FontAwesome } from '@expo/vector-icons';
-import { FilterOption, CategoryTag } from '../components/FilterComponents';
-import AppButton from '../components/AppButton';
+import { FontAwesome } from '@expo/vector-icons';
+import { FilterOption, CategoryTag } from '../components/FilterComponents.js';
+import AppButton from '../components/AppButton.js';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const FilterSearch = () => {
   const router = useRouter();
+
+  // ✅ State for filters
+  const [selectedTime, setSelectedTime] = useState("All");
+  const [selectedRate, setSelectedRate] = useState(5);
+  const [selectedCategory, setSelectedCategory] = useState("All");
 
   const [fontsLoaded] = useFonts({
     'Roboto-Bold': require('../assets/Fonts/Roboto-Bold.ttf'),
@@ -29,22 +35,35 @@ const FilterSearch = () => {
         {/* Time Section */}
         <Text style={localStyles.filterSectionTitle}>Time</Text>
         <View style={localStyles.filterRow}>
-          <FilterOption label="All" />
-          <FilterOption label="Newest" active />
-          <FilterOption label="Oldest" />
-          <FilterOption label="Popularity" />
+          {["All", "Newest", "Oldest", "Popularity"].map((time) => (
+            <FilterOption
+              key={time}
+              label={time}
+              active={selectedTime === time}
+              onPress={() => setSelectedTime(time)}
+            />
+          ))}
         </View>
 
         {/* Rate Section */}
         <Text style={localStyles.filterSectionTitle}>Rate</Text>
         <View style={localStyles.filterRow}>
           {[5, 4, 3, 2, 1].map((num) => (
-            <View
+            <TouchableOpacity
               key={num}
-              style={[localStyles.filterTag, num === 4 && localStyles.filterTagActive]}
+              style={[
+                localStyles.filterTag,
+                selectedRate === num && localStyles.filterTagActive,
+              ]}
+              onPress={() => setSelectedRate(num)}
             >
               <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                <Text style={[localStyles.filterTagText, num === 4 && localStyles.filterTagTextActive]}>
+                <Text
+                  style={[
+                    localStyles.filterTagText,
+                    selectedRate === num && localStyles.filterTagTextActive,
+                  ]}
+                >
                   {num}
                 </Text>
                 <FontAwesome
@@ -54,23 +73,25 @@ const FilterSearch = () => {
                   style={{ marginLeft: 5 }}
                 />
               </View>
-            </View>
+            </TouchableOpacity>
           ))}
         </View>
 
         {/* Category Section */}
         <Text style={localStyles.filterSectionTitle}>Category</Text>
         <View style={{ flexDirection: 'row', flexWrap: 'wrap', marginBottom: 30 }}>
-          <CategoryTag label="All" />
-          <CategoryTag label="Cereal" />
-          <CategoryTag label="Vegetables" />
-          <CategoryTag label="Dinner" />
-          <CategoryTag label="Chinese" />
-          <CategoryTag label="Local Dish" active />
-          <CategoryTag label="Fruit" />
-          <CategoryTag label="BreakFast" />
-          <CategoryTag label="Spanish" />
-          <CategoryTag label="Lunch" />
+          {[
+            "All", "Cereal", "Vegetables", "Dinner",
+            "Chinese", "Local Dish", "Fruit",
+            "BreakFast", "Spanish", "Lunch"
+          ].map((cat) => (
+            <CategoryTag
+              key={cat}
+              label={cat}
+              active={selectedCategory === cat}
+              onPress={() => setSelectedCategory(cat)}
+            />
+          ))}
         </View>
 
         {/* Filter Button */}

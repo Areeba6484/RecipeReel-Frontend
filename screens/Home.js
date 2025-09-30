@@ -1,13 +1,14 @@
-import { SafeAreaView, ScrollView, View, Text, Image } from "react-native";
+import {ScrollView, View, Text, Image } from "react-native";
 import { useFonts } from "expo-font";
 import { localStyles } from "../styles/local";
 import { useRouter } from "expo-router";
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-import SearchBar from "../components/SearchBar";
-import CategoryList from "../components/CategoryList";
-import RecipeCardHome from "../components/RecipeCardHome";
-import NewRecipeCard from "../components/NewRecipeCard";
-import BottomNavBar from "../components/BottomNavBar";
+import SearchBar from "../components/SearchBar.js";
+import CategoryList from "../components/CategoryList.js";
+import RecipeCardHome from "../components/RecipeCardHome.js";
+import NewRecipeCard from "../components/NewRecipeCard.js";
+import BottomNavBar from "../components/BottomNavBar.js";
 
 import chickenBiryani from "../assets/images/chickenBiryani.jpg";
 import butterChicken from "../assets/images/butterChicken.jpg";

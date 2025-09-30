@@ -1,12 +1,13 @@
 import React from 'react';
-import { SafeAreaView, ScrollView, View, Text, TouchableOpacity } from 'react-native';
+import { ScrollView, View, Text, TouchableOpacity } from 'react-native';
 import { styles } from '../styles/global';
 import { localStyles } from '../styles/local';
 import { useFonts } from 'expo-font';
 import { Ionicons, FontAwesome } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
-import RecipeCard from '../components/RecipeCard';
-import BottomNavBar from '../components/BottomNavBar';
+import RecipeCard from '../components/RecipeCard.js';
+import BottomNavBar from '../components/BottomNavBar.js';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const SavedRecipes = () => {
   const router = useRouter();
@@ -51,8 +52,8 @@ const SavedRecipes = () => {
       <BottomNavBar
         onHome={() => router.push('/home')}
         onSaved={() => router.push('/savedrecipes')}
-        onAdd={() => {}}
-        onNotifications={() => {}}
+        onAdd={() => { }}
+        onNotifications={() => { }}
         onProfile={() => router.push('/profile')}
       />
     </SafeAreaView>

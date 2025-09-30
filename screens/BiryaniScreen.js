@@ -6,10 +6,10 @@ import { styles } from '../styles/global';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 // Modular Components
-import HeaderImageCard from '../components/HeaderImageCard';
-import ChefCard from '../components/ChefCard';
-import Tabs from '../components/Tabs';
-import IngredientItem from '../components/IngredientItem';
+import HeaderImageCard from '../components/HeaderImageCard.js';
+import ChefCard from '../components/ChefCard.js';
+import Tabs from '../components/Tabs.js';
+import IngredientItem from '../components/IngredientItem.js';
 
 const BiryaniScreen = () => {
   const router = useRouter();

@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-import { SafeAreaView, ScrollView, View, Text, Image, TouchableOpacity } from 'react-native';
+import {ScrollView, View, Text, Image, TouchableOpacity } from 'react-native';
 import { useFonts } from 'expo-font';
 import { useRouter } from 'expo-router';
 import { Ionicons, Entypo, FontAwesome } from '@expo/vector-icons';
 import { styles } from '../styles/global';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 // Modular components
-import VideoHeaderCard from '../components/VideoHeaderCard';
-import StepsList from '../components/StepsList';
+import VideoHeaderCard from '../components/VideoHeaderCard.js';
+import StepsList from '../components/StepsList.js';
 
 const BiryaniProcedure = () => {
   const router = useRouter();

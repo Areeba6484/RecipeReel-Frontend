@@ -5,9 +5,9 @@ import { useFonts } from "expo-font";
 import { useRouter } from "expo-router";
 
 // Reusable components
-import CustomInput from "../components/CustomInput";
-import Divider from "../components/Divider";
-import SocialIconsRow from "../components/SocialIconsRow";
+import CustomInput from "../components/CustomInput.js";
+import Divider from "../components/Divider.js";
+import SocialIconsRow from "../components/SocialIconsRow.js";
 
 const Signin = () => {
   const router = useRouter();

@@ -4,8 +4,8 @@ import { styles } from '../styles/global';
 import { useFonts } from 'expo-font';
 import { Ionicons, FontAwesome, Entypo } from '@expo/vector-icons';
 import { localStyles } from '../styles/local';
-import RecipeCard from '../components/RecipeCard';
-import ProfileTabs from '../components/ProfileTabs';
+import RecipeCard from '../components/RecipeCard.js';
+import ProfileTabs from '../components/ProfileTabs.js';
 import { useRouter } from 'expo-router';
 import { useState } from 'react';
 

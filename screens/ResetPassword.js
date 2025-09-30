@@ -6,7 +6,7 @@ import { useRouter } from "expo-router";
 import { useState } from "react";
 
 // Reusable component
-import CustomInput from "../components/CustomInput";
+import CustomInput from "../components/CustomInput.js";
 
 const ResetPassword = () => {
   const [clicked, setClicked] = useState(false);

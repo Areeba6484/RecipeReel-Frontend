@@ -5,7 +5,7 @@ import { useFonts } from "expo-font";
 import { useRouter } from "expo-router";
 
 // Reusable input
-import CustomInput from "../components/CustomInput";
+import CustomInput from "../components/CustomInput.js";
 import { useState } from "react";
 
 const ForgotPassword = () => {
